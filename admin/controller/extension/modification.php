@@ -324,13 +324,17 @@ class ControllerExtensionModification extends Controller {
 										} else {
 											$search = trim($operation->getElementsByTagName('search')->item(0)->textContent);
 											$limit = $operation->getElementsByTagName('search')->item(0)->getAttribute('limit');
+											$quote = $operation->getElementsByTagName('search')->item(0)->getAttribute('quote');
 											$replace = trim($operation->getElementsByTagName('add')->item(0)->textContent);
 
 											// Limit
 											if (!$limit) {
 												$limit = -1;
 											}
-
+											// Quote
+											if ($quote == 'true') {
+											    $search = preg_quote($search);
+											}
 											// Log
 											$match = array();
 
