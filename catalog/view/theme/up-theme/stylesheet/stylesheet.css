@@ -3535,7 +3535,26 @@ right:10px;
 .operator.kievstar { background-position: 0px 0px;  } 
 .operator.life { background-position: 0px -30px;  } 
 .operator.mts { background-position: 0px -60px;  } 
+
+@media (max-width: 992px){
+.product-buy-wrapper h1{
+	font-size:100%;
+	text-transform: none;
+}
+.panel-heading h2{
+	font-size:100%;
+}
+#fast_order .hidden-xs{
+	display: block!important;
+}
+
+}
+
 .btn-quick-order .btn-ordercart{
 	margin-bottom: 1.5em;
 	color: #fff;
+}
+.product-buy-wrapper h1{
+	font-size: 25px;
+	text-transform: none;
 }
