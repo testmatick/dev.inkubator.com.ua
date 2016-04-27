@@ -3535,3 +3535,7 @@ right:10px;
 .operator.kievstar { background-position: 0px 0px;  } 
 .operator.life { background-position: 0px -30px;  } 
 .operator.mts { background-position: 0px -60px;  } 
+.btn-quick-order .btn-ordercart{
+	margin-bottom: 1.5em;
+	color: #fff;
+}
