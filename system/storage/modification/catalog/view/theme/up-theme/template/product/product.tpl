@@ -611,7 +611,10 @@ $('.image-additional-wrapper').owlCarousel({
         
         <?php if(($config->get('t1o_layout_product_page')== 5) || ($config->get('t1o_layout_product_page')== 6) || ($config->get('t1o_layout_product_page')== 7) || ($config->get('t1o_layout_product_page')== 10)) { ?>	
         <div class="col-sm-3 product-right-sm hidden-xs">
-        
+       <button id="fast_order" class="btn btn-primary btn-lg btn-block" type="button" onclick="fastorder_open('<?php echo $product_id; ?>');" title="Заказ в 1 клик">
+<i style="color:#;" class="fa fa-flip-horizontal fa-reply-all"></i>
+<span class="hidden-xs">Заказ в 1 клик</span>
+</button>
         <?php if (($manufacturer) && ($manufacturers_img) && ($config->get('t1o_product_manufacturer_logo_status') ==1)) { ?>  
           <div class="product-right-sm-logo">   
             <a href="<?php echo $manufacturers; ?>"><?php echo ($manufacturers_img) ? '<img src="'.$manufacturers_img.'" title="'.$manufacturers.'" alt="'.$manufacturers.'" />' : $manufacturers ;?></a>
