@@ -97,12 +97,33 @@
                   <?php } ?>
                 </div>
               </div>
+              <!--new field-->
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-telephone"><?php echo $entry_telephone; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="config_telephone" value="<?php echo $config_telephone; ?>" placeholder="<?php echo $entry_telephone; ?>" id="input-telephone" class="form-control" />
                   <?php if ($error_telephone) { ?>
                   <div class="text-danger"><?php echo $error_telephone; ?></div>
+                  <?php } ?>
+                </div>
+              </div>
+               <!--new field-->
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-telephone2"><?php echo $entry_telephone2; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_telephone2" value="<?php echo $config_telephone2; ?>" placeholder="<?php echo $entry_telephone2; ?>" id="input-telephone2" class="form-control" />
+                  <?php if ($error_telephone2) { ?>
+                  <div class="text-danger"><?php echo $error_telephone2; ?></div>
+                  <?php } ?>
+                </div>
+              </div>
+               <!--new field-->
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-telephone3"><?php echo $entry_telephone3; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_telephone3" value="<?php echo $config_telephone3; ?>" placeholder="<?php echo $entry_telephone3; ?>" id="input-telephone3" class="form-control" />
+                  <?php if ($error_telephone3) { ?>
+                  <div class="text-danger"><?php echo $error_telephone3; ?></div>
                   <?php } ?>
                 </div>
               </div>
