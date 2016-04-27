@@ -36,7 +36,6 @@ class ControllerCommonHeader extends Controller {
 		$data['direction'] = $this->language->get('direction');
 		
 		$data['name'] = $this->config->get('config_name');
-		$data['alter_lang'] = $this->getAlterLanguageLinks($this->document->getLinks());
 		
 		$this->load->model('catalog/information');
 		
@@ -110,6 +109,8 @@ class ControllerCommonHeader extends Controller {
 		
 		$data['text_contact'] = $this->language->get('text_contact');
 		$data['text_telephone'] = $this->language->get('text_telephone');
+		$data['text_telephone2'] = $this->language->get('text_telephone2');
+		$data['text_telephone3'] = $this->language->get('text_telephone3');
 		$data['text_fax'] = $this->language->get('text_fax');
 		$data['text_open'] = $this->language->get('text_open');
 		
@@ -133,6 +134,8 @@ class ControllerCommonHeader extends Controller {
 		$data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 		$data['contact'] = $this->url->link('information/contact');
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['telephone2'] = $this->config->get('config_telephone3');
+		$data['telephone3'] = $this->config->get('config_telephone3');
 		
 		$data['return'] = $this->url->link('account/return/insert', '', 'SSL');
 		$data['sitemap'] = $this->url->link('information/sitemap');
@@ -159,6 +162,8 @@ class ControllerCommonHeader extends Controller {
 		$data['address'] = nl2br($this->config->get('config_address'));
 		$data['geocode'] = $this->config->get('config_geocode');
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['telephone2'] = $this->config->get('config_telephone2');
+		$data['telephone3'] = $this->config->get('config_telephone3');
 		$data['fax'] = $this->config->get('config_fax');
 		$data['open'] = nl2br($this->config->get('config_open'));
 		$data['comment'] = $this->config->get('config_comment');
@@ -173,6 +178,8 @@ class ControllerCommonHeader extends Controller {
 					'address'     => nl2br($location_info['address']),
 					'geocode'     => $location_info['geocode'],
 					'telephone'   => $location_info['telephone'],
+					'telephone2'   => $location_info['telephone2'],
+					'telephone3'   => $location_info['telephone3'],
 					'fax'         => $location_info['fax'],
 					'open'        => nl2br($location_info['open']),
 					'comment'     => $location_info['comment']
@@ -329,34 +336,5 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			return $this->load->view('default/template/common/header.tpl', $data);
 		}
-	}
-	
-	protected function getAlterLanguageLinks($links) {
-		$result = array();
-		if ($this->config->get('config_seo_url')) {
-			foreach($links as $link) {
-				if($link['rel']=='canonical') {
-					$url=$link['href'];
-					$schema = parse_url($url,PHP_URL_SCHEME);
-					$server = strtolower($schema)=='https' ? HTTPS_SERVER : HTTP_SERVER; 
-					$cur_lang = substr($url, strlen($server),2);
-					$query = substr($url, strlen($server)+2);
-					$this->load->model('localisation/language');
-					$languages = $this->model_localisation_language->getLanguages();
-					$active_langs = array();
-					foreach($languages as $lang) {
-						if($lang['status']) {
-							$active_langs[]=$lang['code'];
-						} 
-					}
-					if(in_array($cur_lang, $active_langs)) {
-						foreach($active_langs as $lang) {
-							$result[$lang] = $server.$lang.($query ? $query : '');
-						}
-					}
-				}
-			}
-		}
-		return $result;
 	}
 }
