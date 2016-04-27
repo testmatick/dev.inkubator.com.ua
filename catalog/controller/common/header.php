@@ -109,6 +109,8 @@ class ControllerCommonHeader extends Controller {
 		
 		$data['text_contact'] = $this->language->get('text_contact');
 		$data['text_telephone'] = $this->language->get('text_telephone');
+		$data['text_telephone2'] = $this->language->get('text_telephone2');
+		$data['text_telephone3'] = $this->language->get('text_telephone3');
 		$data['text_fax'] = $this->language->get('text_fax');
 		$data['text_open'] = $this->language->get('text_open');
 		
@@ -128,6 +130,8 @@ class ControllerCommonHeader extends Controller {
 		$data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 		$data['contact'] = $this->url->link('information/contact');
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['telephone2'] = $this->config->get('config_telephone3');
+		$data['telephone3'] = $this->config->get('config_telephone3');
 		
 		$data['return'] = $this->url->link('account/return/insert', '', 'SSL');
 		$data['sitemap'] = $this->url->link('information/sitemap');
@@ -154,6 +158,8 @@ class ControllerCommonHeader extends Controller {
 		$data['address'] = nl2br($this->config->get('config_address'));
 		$data['geocode'] = $this->config->get('config_geocode');
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['telephone2'] = $this->config->get('config_telephone2');
+		$data['telephone3'] = $this->config->get('config_telephone3');
 		$data['fax'] = $this->config->get('config_fax');
 		$data['open'] = nl2br($this->config->get('config_open'));
 		$data['comment'] = $this->config->get('config_comment');
@@ -168,6 +174,8 @@ class ControllerCommonHeader extends Controller {
 					'address'     => nl2br($location_info['address']),
 					'geocode'     => $location_info['geocode'],
 					'telephone'   => $location_info['telephone'],
+					'telephone2'   => $location_info['telephone2'],
+					'telephone3'   => $location_info['telephone3'],
 					'fax'         => $location_info['fax'],
 					'open'        => nl2br($location_info['open']),
 					'comment'     => $location_info['comment']
