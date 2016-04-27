@@ -46,6 +46,8 @@ class ControllerInformationContact extends Controller {
 		$data['text_contact'] = $this->language->get('text_contact');
 		$data['text_address'] = $this->language->get('text_address');
 		$data['text_telephone'] = $this->language->get('text_telephone');
+		$data['text_telephone2'] = $this->language->get('text_telephone2');
+		$data['text_telephone3'] = $this->language->get('text_telephone3');
 		$data['text_fax'] = $this->language->get('text_fax');
 		$data['text_open'] = $this->language->get('text_open');
 		$data['text_comment'] = $this->language->get('text_comment');
@@ -91,6 +93,8 @@ class ControllerInformationContact extends Controller {
 		$data['geocode'] = $this->config->get('config_geocode');
 		$data['geocode_hl'] = $this->config->get('config_language');
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['telephone2'] = $this->config->get('config_telephone2');
+		$data['telephone3'] = $this->config->get('config_telephone3');
 		$data['fax'] = $this->config->get('config_fax');
 		$data['open'] = nl2br($this->config->get('config_open'));
 		$data['comment'] = $this->config->get('config_comment');
@@ -115,6 +119,8 @@ class ControllerInformationContact extends Controller {
 					'address'     => nl2br($location_info['address']),
 					'geocode'     => $location_info['geocode'],
 					'telephone'   => $location_info['telephone'],
+					'telephone2'   => $location_info['telephone2'],
+					'telephone3'   => $location_info['telephone3'],
 					'fax'         => $location_info['fax'],
 					'image'       => $image,
 					'open'        => nl2br($location_info['open']),
