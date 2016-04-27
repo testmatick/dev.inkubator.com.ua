@@ -51,13 +51,6 @@
                 <div class="iblog-post-description" itemprop="articleBody">
                     <?php echo $body; ?>
                 </div>
-                <div class="iblog-post-keywords">
-					<span class="iblog-keywords-string"><?php echo $iblog_keywords; ?></span> <span itemprop="keywords">
-                    	<?php if(is_array($keywords)) { foreach($keywords as $keyword) { ?>
-                        	<a href="<?php echo $keyword['href']; ?>"><?php echo $keyword['name']; ?></a>, 
-                         <?php } } else { echo $keywords; } ?>
-                    </span>
-                </div>
                 <?php if (isset($moduleData['DisqusEnabled']) && ($moduleData['DisqusEnabled']=='yes')) {?>
                     <hr />
                     <div class="iblog-post-comments">
