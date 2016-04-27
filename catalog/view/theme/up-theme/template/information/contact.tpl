@@ -34,9 +34,11 @@
               <?php } ?>
               -->
             </div>
-            <div class="col-sm-2"><legend><?php echo $text_telephone; ?></legend>
-              <?php echo $telephone; ?><br />
-              <br />
+            <div class="col-sm-2">
+            <legend><?php echo $text_telephone; ?></legend>
+              <?php echo $telephone; ?><br>
+               <?php echo $telephone2; ?><br>
+                <?php echo $telephone3; ?>
               <?php if ($fax) { ?>
               <legend><?php echo $text_fax; ?></legend>
               <?php echo $fax; ?>
@@ -80,7 +82,11 @@
                   <?php } ?>
                 </div>
                 <div class="col-sm-3"> <strong><?php echo $text_telephone; ?></strong><br>
-                  <?php echo $location['telephone']; ?><br />
+                  <?php echo $location['telephone']; ?>
+                  <strong><?php echo $text_telephone2; ?></strong>
+                  <?php echo $location['telephone2']; ?>
+                  <strong><?php echo $text_telephone3; ?></strong>
+                  <?php echo $location['telephone3']; ?>
                   <br />
                   <?php if ($location['fax']) { ?>
                   <strong><?php echo $text_fax; ?></strong><br>
