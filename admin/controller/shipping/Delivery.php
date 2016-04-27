@@ -1,16 +1,16 @@
 <?php
-class ControllerShippingNovaPoshta extends Controller {
+class ControllerShippingDelivery extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('shipping/NovaPoshta');
+		$this->load->language('shipping/Delivery');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('NovaPoshta', $this->request->post);
+			$this->model_setting_setting->editSetting('Delivery', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -52,44 +52,44 @@ class ControllerShippingNovaPoshta extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('shipping/NovaPoshta', 'token=' . $this->session->data['token'], 'SSL')
+			'href' => $this->url->link('shipping/Delivery', 'token=' . $this->session->data['token'], 'SSL')
 		);
 
-		$data['action'] = $this->url->link('shipping/NovaPoshta', 'token=' . $this->session->data['token'], 'SSL');
+		$data['action'] = $this->url->link('shipping/Delivery', 'token=' . $this->session->data['token'], 'SSL');
 
 		$data['cancel'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL');
 
-		if (isset($this->request->post['NovaPoshta_geo_zone_id'])) {
-			$data['NovaPoshta_geo_zone_id'] = $this->request->post['NovaPoshta_geo_zone_id'];
+		if (isset($this->request->post['Delivery_geo_zone_id'])) {
+			$data['Delivery_geo_zone_id'] = $this->request->post['Delivery_geo_zone_id'];
 		} else {
-			$data['NovaPoshta_geo_zone_id'] = $this->config->get('NovaPoshta_geo_zone_id');
+			$data['Delivery_geo_zone_id'] = $this->config->get('Delivery_geo_zone_id');
 		}
 
 		$this->load->model('localisation/geo_zone');
 
 		$data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
 
-		if (isset($this->request->post['NovaPoshta_status'])) {
-			$data['NovaPoshta_status'] = $this->request->post['NovaPoshta_status'];
+		if (isset($this->request->post['Delivery_status'])) {
+			$data['Delivery_status'] = $this->request->post['Delivery_status'];
 		} else {
-			$data['NovaPoshta_status'] = $this->config->get('NovaPoshta_status');
+			$data['Delivery_status'] = $this->config->get('Delivery_status');
 		}
 
-		if (isset($this->request->post['NovaPoshta_sort_order'])) {
-			$data['NovaPoshta_sort_order'] = $this->request->post['NovaPoshta_sort_order'];
+		if (isset($this->request->post['Delivery_sort_order'])) {
+			$data['Delivery_sort_order'] = $this->request->post['Delivery_sort_order'];
 		} else {
-			$data['NovaPoshta_sort_order'] = $this->config->get('NovaPoshta_sort_order');
+			$data['Delivery_sort_order'] = $this->config->get('Delivery_sort_order');
 		}
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('shipping/NovaPoshta.tpl', $data));
+		$this->response->setOutput($this->load->view('shipping/Delivery.tpl', $data));
 	}
 
 	protected function validate() {
-		if (!$this->user->hasPermission('modify', 'shipping/NovaPoshta')) {
+		if (!$this->user->hasPermission('modify', 'shipping/Delivery')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
