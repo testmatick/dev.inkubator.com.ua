@@ -1376,7 +1376,6 @@ $('#open-top-custom-block').click(function() {
     <li>
     <div>
     <h5><?php echo $text_menu_contact_tel; ?></h5>
-    <div class="side_phone">
     <p><div class="operator mts"></div><?php echo $telephone; ?></p>
     <p><div class="operator kievstar"></div><?php echo $telephone2; ?></p>
     <p><div class="operator life"></div><?php echo $telephone3; ?></p>
