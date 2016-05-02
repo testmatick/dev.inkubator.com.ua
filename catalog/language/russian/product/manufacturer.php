@@ -1,14 +1,14 @@
 <?php
 // Heading
-$_['heading_title']     = 'Найди свой бренд';
+$_['heading_title']     = 'Найдите своего производителя';
 
 // Text
-$_['text_brand']        = 'Бренд';
-$_['text_index']        = 'Индекс бренда:';
-$_['text_error']        = 'Бренд не найден!';
+$_['text_brand']        = 'Производитель';
+$_['text_index']        = 'Индекс производителя:';
+$_['text_error']        = 'Производитель не найден!';
 $_['text_empty']        = 'Нет товаров для списка.';
 $_['text_quantity']     = 'Кол-во:';
-$_['text_manufacturer'] = 'Бренд:';
+$_['text_manufacturer'] = 'Производитель:';
 $_['text_model']        = 'Код товара:';
 $_['text_points']       = 'Бонусные баллы:';
 $_['text_price']        = 'Цена:';

@@ -1,7 +1,12 @@
 <?php
+
+//version 2.0.0.0
+//Made by Sirchyk for www.marketplus.if.ua on 16 of october 2014.
+//info@marketplus.if.ua
+
 // Text
 $_['text_items']    = '%s';
-$_['text_empty']    = 'Your shopping cart is empty!';
-$_['text_cart']     = 'View Cart';
-$_['text_checkout'] = 'Checkout';
-$_['text_recurring']  = 'Payment Profile';
+$_['text_empty']    = 'Ваш кошик порожній!';
+$_['text_cart']     = 'Переглянути кошик';
+$_['text_checkout'] = 'Оформити замовлення';
+$_['text_recurring']  = 'Профіль оплати';

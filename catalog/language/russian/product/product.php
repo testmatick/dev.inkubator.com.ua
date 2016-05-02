@@ -1,7 +1,7 @@
 <?php
 // Text
 $_['text_search']                             = 'Поиск';
-$_['text_brand']                              = 'Бренд';
+$_['text_brand']                              = 'Производитель';
 $_['text_manufacturer']                       = 'Производитель:';
 $_['text_model']                              = 'Код товара:';
 $_['text_reward']                             = 'Бонусные баллы:';
