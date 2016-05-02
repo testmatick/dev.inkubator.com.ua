@@ -47,7 +47,13 @@ Temporary Items
 .apdisk
 
 #
-/.image/cache
-/.image/catalog
-/.admin/.config.php
-.config.php
+image/cache
+image/catalog
+admin/.config.php
+config.php
+.image
+.image/.cache
+.image/.catalog
+.image/.flags
+.system
+.cache
