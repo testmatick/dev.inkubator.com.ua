@@ -3558,3 +3558,8 @@ right:10px;
 	font-size: 25px;
 	text-transform: none;
 }
+
+.side_phone .operator{
+margin-left: -2.3em;
+margin-right: -2.3em;
+}
