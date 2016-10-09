@@ -103,7 +103,7 @@ $('#langs a').click(function (e) {
   $(this).tab('show')
 })
 //--></script> 
-
+<script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"><!--
 $('input[name=\'path\']').autocomplete({
 	'source': function(request, response) {
@@ -132,9 +132,7 @@ $('input[name=\'path\']').autocomplete({
 });
 
 <?php foreach ($languages as $language) { ?>
-	$('#description<?php echo $language["language_id"]; ?>').summernote({
-			height: 320
-	});
+	 CKEDITOR.replace("description<?php echo $language["language_id"]; ?>");
 <?php } ?>
 
 $('input[name="category_description[<?php echo $language_id; ?>][name]"]').change(function() {

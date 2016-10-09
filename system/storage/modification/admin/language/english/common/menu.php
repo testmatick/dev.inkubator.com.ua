@@ -1,4 +1,10 @@
 <?php
+
+				$_['text_productexport']                   = 'Product Export Tool';
+				
+
+				$_['text_productimport']                   = 'Product Import Tool';
+				
 // Text
 
 	$_['text_fastorder']            = 'FASTORDER';

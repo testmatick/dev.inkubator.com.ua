@@ -257,6 +257,20 @@
                 </div>
               </div>
               <div class="form-group">
+
+<!-- DateAdded -->
+                <label class="col-sm-2 control-label" for="input-date-added"><?php echo $entry_date_added; ?></label>
+                <div class="col-sm-3">
+                  <div class="input-group date">
+                    <input type="text" name="date_added" value="<?php echo $date_added; ?>" placeholder="<?php echo $entry_date_added; ?>" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                    </span></div>
+                </div>
+              </div>
+              <div class="form-group">
+<!-- DateAdded end -->
+			
                 <label class="col-sm-2 control-label" for="input-length"><?php echo $entry_dimension; ?></label>
                 <div class="col-sm-10">
                   <div class="row">
@@ -333,20 +347,6 @@
                 <div class="col-sm-10">
                   <input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" placeholder="<?php echo $entry_manufacturer; ?>" id="input-manufacturer" class="form-control" />
                   <input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-main-category-id"><?php echo $entry_main_category; ?></label>
-                <div class="col-sm-10">
-                  <select name="main_category_id" id="input-main-category-id" class="form-control">
-                    <?php foreach ($product_categories as $category) { ?>
-	                <?php if ($category['category_id'] == $main_category_id) { ?>
-	                <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
-	                <?php } else { ?>
-	                <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
-                    <?php } ?>
-                    <?php } ?>
-	              </select>
                 </div>
               </div>
               <div class="form-group">

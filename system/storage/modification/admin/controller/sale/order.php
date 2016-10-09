@@ -891,6 +891,11 @@ class ControllerSaleOrder extends Controller {
 
 			$customer_group_info = $this->model_customer_customer_group->getCustomerGroup($order_info['customer_group_id']);
 
+                $this->load->model('module/simplecustom');
+
+                $customInfo = $this->model_module_simplecustom->getCustomFields('order', $order_info['order_id'], $order_info['language_code']);
+            
+
 			if ($customer_group_info) {
 				$data['customer_group'] = $customer_group_info['name'];
 			} else {
@@ -936,6 +941,23 @@ class ControllerSaleOrder extends Controller {
 				'country'   => $order_info['payment_country']
 			);
 
+
+                $find[] = '{company_id}';
+                $find[] = '{tax_id}';
+                $replace['company_id'] = isset($order_info['payment_company_id']) ? $order_info['payment_company_id'] : '';
+                $replace['tax_id'] = isset($order_info['payment_tax_id']) ? $order_info['payment_tax_id'] : '';
+
+                foreach($customInfo as $id => $value) {
+                    if (strpos($id, 'payment_') === 0) {
+                        $id = str_replace('payment_', '', $id);
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    } elseif (strpos($id, 'shipping_') === false) {
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    }
+                }
+            
 			$data['payment_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 			// Shipping Address
@@ -971,6 +993,23 @@ class ControllerSaleOrder extends Controller {
 				'country'   => $order_info['shipping_country']
 			);
 
+
+                $find[] = '{company_id}';
+                $find[] = '{tax_id}';
+                $replace['company_id'] = isset($order_info['shipping_company_id']) ? $order_info['shipping_company_id'] : '';
+                $replace['tax_id'] = isset($order_info['shipping_tax_id']) ? $order_info['shipping_tax_id'] : '';
+
+                foreach($customInfo as $id => $value) {
+                    if (strpos($id, 'shipping_') === 0) {
+                        $id = str_replace('shipping_', '', $id);
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    } elseif (strpos($id, 'payment_') === false) {
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    }
+                }
+            
 			$data['shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 			// Uploaded files
@@ -1245,6 +1284,39 @@ class ControllerSaleOrder extends Controller {
 				}
 			}
 
+
+                $this->load->model('module/simplecustom');
+
+                $customAccountInfo = $this->model_module_simplecustom->getInfo('order', $order_info['order_id'], 'customer');
+
+                foreach ($customAccountInfo as $key => $info) {
+                    $data['account_custom_fields'][] = array(
+                        'name'  => $info['label'],
+                        'value' => !empty($info['values']) ? $info['values'][$info['value']] : $info['value'],
+                        'sort_order' => 0
+                    );
+                }
+
+                $customShippingInfo = $this->model_module_simplecustom->getInfo('order', $order_info['order_id'], 'shipping_address');
+
+                foreach ($customShippingInfo as $key => $info) {
+                    $data['account_custom_fields'][] = array(
+                        'name'  => $info['label'],
+                        'value' => !empty($info['values']) ? $info['values'][$info['value']] : $info['value'],
+                        'sort_order' => 0
+                    );
+                }
+
+                $customPaymentInfo = $this->model_module_simplecustom->getInfo('order', $order_info['order_id'], 'payment_address');
+
+                foreach ($customPaymentInfo as $key => $info) {
+                    $data['account_custom_fields'][] = array(
+                        'name'  => $info['label'],
+                        'value' => !empty($info['values']) ? $info['values'][$info['value']] : $info['value'],
+                        'sort_order' => 0
+                    );
+                }
+            
 			$data['ip'] = $order_info['ip'];
 			$data['forwarded_ip'] = $order_info['forwarded_ip'];
 			$data['user_agent'] = $order_info['user_agent'];
@@ -1597,6 +1669,11 @@ class ControllerSaleOrder extends Controller {
 			if ($order_info) {
 				$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
 
+                $this->load->model('module/simplecustom');
+
+                $customInfo = $this->model_module_simplecustom->getCustomFields('order', $order_info['order_id'], $order_info['language_code']);
+            
+
 				if ($store_info) {
 					$store_address = $store_info['config_address'];
 					$store_email = $store_info['config_email'];
@@ -1647,6 +1724,23 @@ class ControllerSaleOrder extends Controller {
 					'country'   => $order_info['payment_country']
 				);
 
+
+                $find[] = '{company_id}';
+                $find[] = '{tax_id}';
+                $replace['company_id'] = isset($order_info['payment_company_id']) ? $order_info['payment_company_id'] : '';
+                $replace['tax_id'] = isset($order_info['payment_tax_id']) ? $order_info['payment_tax_id'] : '';
+
+                foreach($customInfo as $id => $value) {
+                    if (strpos($id, 'payment_') === 0) {
+                        $id = str_replace('payment_', '', $id);
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    } elseif (strpos($id, 'shipping_') === false) {
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    }
+                }
+            
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 				if ($order_info['shipping_address_format']) {
@@ -1681,6 +1775,23 @@ class ControllerSaleOrder extends Controller {
 					'country'   => $order_info['shipping_country']
 				);
 
+
+                $find[] = '{company_id}';
+                $find[] = '{tax_id}';
+                $replace['company_id'] = isset($order_info['shipping_company_id']) ? $order_info['shipping_company_id'] : '';
+                $replace['tax_id'] = isset($order_info['shipping_tax_id']) ? $order_info['shipping_tax_id'] : '';
+
+                foreach($customInfo as $id => $value) {
+                    if (strpos($id, 'shipping_') === 0) {
+                        $id = str_replace('shipping_', '', $id);
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    } elseif (strpos($id, 'payment_') === false) {
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    }
+                }
+            
 				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 				$this->load->model('tool/upload');
@@ -1838,6 +1949,11 @@ class ControllerSaleOrder extends Controller {
 			if ($order_info && $order_info['shipping_code']) {
 				$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
 
+                $this->load->model('module/simplecustom');
+
+                $customInfo = $this->model_module_simplecustom->getCustomFields('order', $order_info['order_id'], $order_info['language_code']);
+            
+
 				if ($store_info) {
 					$store_address = $store_info['config_address'];
 					$store_email = $store_info['config_email'];
@@ -1888,6 +2004,23 @@ class ControllerSaleOrder extends Controller {
 					'country'   => $order_info['shipping_country']
 				);
 
+
+                $find[] = '{company_id}';
+                $find[] = '{tax_id}';
+                $replace['company_id'] = isset($order_info['shipping_company_id']) ? $order_info['shipping_company_id'] : '';
+                $replace['tax_id'] = isset($order_info['shipping_tax_id']) ? $order_info['shipping_tax_id'] : '';
+
+                foreach($customInfo as $id => $value) {
+                    if (strpos($id, 'shipping_') === 0) {
+                        $id = str_replace('shipping_', '', $id);
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    } elseif (strpos($id, 'payment_') === false) {
+                        $find[] = '{'.$id.'}';
+                        $replace[$id] = $value;
+                    }
+                }
+            
 				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 				$this->load->model('tool/upload');

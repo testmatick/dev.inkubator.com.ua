@@ -88,7 +88,21 @@
                   <input type="hidden" name="parent_id" value="<?php echo $parent_id; ?>" />
                 </div>
               </div>
-              <div class="form-group">
+			  
+			  <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-products"><span data-toggle="tooltip" title="<?php echo $help_filter; ?>"><?php echo $entry_products; ?></span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="products" value="" placeholder="<?php echo $entry_products; ?>" id="input-product" class="form-control" />
+                  <div id="product-category" class="well well-sm" style="height: 150px; overflow: auto;">
+                    <?php foreach ($product_categories as $product_category) { ?>
+                    <div id="product-category<?php echo $product_category['product_id']; ?>"><i class="fa fa-minus-circle"></i> <?php echo $product_category['name']; ?>
+                      <input type="hidden" name="product_category[]" value="<?php echo $product_category['product_id']; ?>" />
+                    </div>
+                    <?php } ?>
+                  </div>
+                </div>
+				</div>
+			   
                 <label class="col-sm-2 control-label" for="input-filter"><span data-toggle="tooltip" title="<?php echo $help_filter; ?>"><?php echo $entry_filter; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="filter" value="" placeholder="<?php echo $entry_filter; ?>" id="input-filter" class="form-control" />
@@ -298,7 +312,38 @@ $('#category-filter').delegate('.fa-minus-circle', 'click', function() {
 //--></script> 
   <script type="text/javascript"><!--
 $('#language a:first').tab('show');
+
+//--></script>
+<script type="text/javascript"><!--
+$('input[name=\'products\']').autocomplete({
+'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+'select': function(item) {
+		$('input[name=\'products\']').val('');
+		$('#product-category' + item['value']).remove();
+
+		$('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
+	}
+});
+
+$('#product-category').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});		
+
 //--></script></div>
+
 <script src="view/javascript/ckeditor/ckeditor.js"></script>
 <script src="view/javascript/ckeditor/adapters/jquery.js"></script>
 <script type="text/javascript">

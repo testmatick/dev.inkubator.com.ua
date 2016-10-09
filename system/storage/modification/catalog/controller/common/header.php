@@ -250,9 +250,6 @@ class ControllerCommonHeader extends Controller {
 				$thumbhorizmenubg = $this->model_tool_image->resize($image, 168, 180);
 				$data['categories'][] = array(
 					'name'     => $category['name'],
-
-				'sort_order' => $category['sort_order'],
-			
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
 					'thumb'    => $thumb,		
@@ -264,52 +261,6 @@ class ControllerCommonHeader extends Controller {
 		}
 
 		$data['language'] = $this->load->controller('common/language');
-
-				$this->load->model('setting/setting');
-				$this->load->model('module/iblog');
-
-				$iBlog = $this->model_setting_setting->getSetting('iBlog', $this->config->get('config_store_id'));
-				
-				if  ((isset($iBlog['iBlog'])) && ($iBlog['iBlog']['Enabled']== 'yes') && ($iBlog['iBlog']['MainLinkEnabled']== 'yes') && (!empty($iBlog['iBlog']['LinkTitle'][$this->config->get('config_language_id')]))) {
-
-					$data['iblog_og'] = $this->model_module_iblog->getOgData();
-					
-					$iblog_cat = array();			
-					$iblog_categories = array();
-
-					$iblog_categories = $this->model_module_iblog->getCategories();
-
-					foreach ($iblog_categories as $iblog_category) {
-						$iblog_cat[] = array(
-							'name'  => $iblog_category['name'],
-							'href'  => $this->url->link('module/iblog/category', '&path=' . $iblog_category['category_id']),
-						);
-					}
-					
-
-					$data['categories'][] = array(
-						'name'     => $iBlog['iBlog']['LinkTitle'][$this->config->get('config_language_id')],
-						'children' => $iblog_cat,
-						'column'   => 1,
-						'sort_order' => $iBlog['iBlog']['LinkSortOrder'],
-						'href'     => $this->url->link('module/iblog/listing')
-					);
-
-                    if (!function_exists('cmpCategoriesOrder')) {
-                        function cmpCategoriesOrder($a, $b) {
-                            if ($a['sort_order'] == $b['sort_order']) {
-                                return 0;
-                            }
-                            return ($a['sort_order'] < $b['sort_order']) ? -1 : 1;
-                        }
-                    }
-
-                    uasort($data['categories'], 'cmpCategoriesOrder');
-
-				}
-			
-				
-			
 		$data['currency'] = $this->load->controller('common/currency');
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');

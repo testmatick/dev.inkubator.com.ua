@@ -1,4 +1,9 @@
 <?php
+
+// DateAdded
+$_['entry_date_added']   = 'Дата создания';
+// DateAdded end
+			
 // Heading
 $_['heading_title']          = 'Товары';
 
@@ -79,7 +84,6 @@ $_['entry_tag']          	 = 'Теги товара';
 $_['entry_reward']           = 'Бонусные баллы';
 $_['entry_layout']           = 'В шаблоне';
 $_['entry_recurring']        = 'Периодические платежи';
-$_['entry_main_category']    = 'Главная категория:';
 
 // Help
 $_['help_keyword']           = 'Не используйте пробелы, замените пробелы на "-" и убедитесь в уникальности ключевого слова.';

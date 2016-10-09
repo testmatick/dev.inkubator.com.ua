@@ -189,12 +189,37 @@ class ControllerCatalogCategory extends Controller {
 		$category_total = $this->model_catalog_category->getTotalCategories();
 
 		$results = $this->model_catalog_category->getCategories($filter_data);
+	
+			$this->load->model('catalog/product');	
 
 		foreach ($results as $result) {
+	
+					$datafil = array(
+			'filter_category_id'	  => $result['category_id'],
+			'filter_status' => '1'
+			);
+			
+		$TotalProducts =	$this->model_catalog_product->getTotalProducts($datafil);
+		$datafil = array(
+			'filter_category_id'	  => $result['category_id'],
+			'filter_status' => '0'
+			);
+			
+		$TotaldisProducts =	$this->model_catalog_product->getTotalProducts($datafil);
+		
+		
+		
+		
+		
+		
 			$data['categories'][] = array(
 				'category_id' => $result['category_id'],
 				'name'        => $result['name'],
 				'sort_order'  => $result['sort_order'],
+	
+			'total_products' => $TotalProducts,
+				  'total_dis_products' => $TotaldisProducts,
+			'editcat'        => $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&filter_category_id='. $result['category_id'] , 'SSL'),				  
 				'edit'        => $this->url->link('catalog/category/edit', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, 'SSL'),
 				'delete'      => $this->url->link('catalog/category/delete', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, 'SSL')
 			);
@@ -318,6 +343,49 @@ class ControllerCatalogCategory extends Controller {
 		$data['language_code'] = $this->language->get('code');
 		$data['tab_data'] = $this->language->get('tab_data');
 		$data['tab_design'] = $this->language->get('tab_design');
+	
+			$data['entry_products'] = $this->language->get('entry_products');
+			
+			$this->load->model('catalog/product');
+			
+		
+			
+			if (isset($this->request->post['product_category'])) {
+				$products = $this->request->post['product_category'];
+			} else {
+			 if (isset($this->request->get['category_id']))
+				{			 
+				$products = $this->model_catalog_product->getCategoryProducts($this->request->get['category_id']);
+				}
+			 else
+				{
+				$products = array();
+				}
+			
+			}
+
+			$data['product_categories'] = array();
+
+			foreach ($products as $product_id) {
+				$related_info = $this->model_catalog_product->getProduct($product_id);
+
+				if ($related_info) {	
+					$data['product_categories'][] = array(
+						'product_id' => $related_info['product_id'],
+						'name'       => $related_info['name']
+					);
+				}
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			//$data['product_categories']  =	$this->model_catalog_product->getCategoryProducts($this->request->get['category_id']);
+			
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -592,6 +660,8 @@ class ControllerCatalogCategory extends Controller {
 			);
 
 			$results = $this->model_catalog_category->getCategories($filter_data);
+	
+			$this->load->model('catalog/product');	
 
 			foreach ($results as $result) {
 				$json[] = array(

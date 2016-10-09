@@ -13,8 +13,12 @@ if (!defined('DIR_APPLICATION')) {
 	exit;
 }
 
-// Startup
-require_once(DIR_SYSTEM . 'startup.php');
+// VirtualQMOD
+require_once('./vqmod/vqmod.php');
+VQMod::bootup();
+
+// VQMODDED Startup
+require_once(VQMod::modCheck(DIR_SYSTEM . 'startup.php'));
 
 // Registry
 $registry = new Registry();
@@ -258,10 +262,7 @@ $controller = new Front($registry);
 $controller->addPreAction(new Action('common/maintenance'));
 
 // SEO URL's
- if (!$seo_type = $config->get('config_seo_url_type')) {
-            $seo_type = 'seo_url';
-        }
-        $controller->addPreAction(new Action('common/' . $seo_type));
+$controller->addPreAction(new Action('common/seo_url'));
 
 // Router
 if (isset($request->get['route'])) {

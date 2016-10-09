@@ -1209,13 +1209,6 @@ function fastorder_open_cart() {
         }		
 </script>
 			
-
-			<?php if (!empty($iblog_og)) { ?>
-			<?php foreach($iblog_og as $og_key => $og_value) { ?>
-			<meta property="og:<?php echo $og_key; ?>" content="<?php echo $og_value; ?>"/>
-			<?php } ?>
-			<?php } ?>
-			
 </head>
 <body class="<?php echo $class; ?>">
 
@@ -1415,10 +1408,16 @@ $('#open-top-custom-block').click(function() {
     <?php echo $address; ?>
     </div>
     </li>
+    <!--new field-->
     <li>
     <div>
     <h5><?php echo $text_menu_contact_tel; ?></h5>
-    <?php echo $telephone; ?>
+    <div class="side_phone">
+    <p><div class="operator mts"></div><?php echo $telephone; ?></p>
+    <p><div class="operator kievstar"></div><?php echo $telephone2; ?></p>
+    <p><div class="operator life"></div><?php echo $telephone3; ?></p>
+
+    </div>
     </div>
     </li>
     <?php if ($fax) { ?>
@@ -1473,7 +1472,9 @@ $('#open-top-custom-block').click(function() {
         <li><a href="<?php echo $wishlist; ?>" id="wishlist-total" title="<?php echo $text_wishlist; ?>"><i class="fa fa-heart hidden-md hidden-lg"></i> <span class="hidden-xs hidden-sm"><?php echo $text_wishlist; ?></span></a></li>
         <li><a href="<?php echo $shopping_cart; ?>" title="<?php echo $text_shopping_cart; ?>"><i class="fa fa-shopping-cart hidden-md hidden-lg"></i> <span class="hidden-xs hidden-sm"><?php echo $text_shopping_cart; ?></span></a></li>
         <li><a href="<?php echo $checkout; ?>" title="<?php echo $text_checkout; ?>"><i class="fa fa-share hidden-md hidden-lg"></i> <span class="hidden-xs hidden-sm"><?php echo $text_checkout; ?></span></a></li>
-        <li><a href="<?php echo $contact; ?>"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm"><?php echo $telephone; ?></span></li>
+        <li><a href="tel:<?php echo $telephone; ?>"><div class="operator mts"></div></a> <span class="hidden-xs hidden-sm"><a href="tel:<?php echo $telephone; ?>"><?php echo $telephone; ?></a></span></li>
+         <li><a href="tel:<?php echo $telephone2; ?>"><div class="operator kievstar"></div></a> <span class="hidden-xs hidden-sm"><a href="tel:<?php echo $telephone2; ?>"><?php echo $telephone2; ?></a></span></li>
+          <li><a href="tel:<?php echo $telephon3; ?>"><div class="operator life"></div></a> <span class="hidden-xs hidden-sm"><a href="tel:<?php echo $telephone3; ?>"><?php echo $telephone3; ?></a></span></li>
       </ul>
     </div>
     <?php echo $currency; ?>

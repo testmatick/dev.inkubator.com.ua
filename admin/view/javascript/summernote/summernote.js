@@ -1027,7 +1027,8 @@
       NBSP_CHAR: NBSP_CHAR,
       ZERO_WIDTH_NBSP_CHAR: ZERO_WIDTH_NBSP_CHAR,
       blank: blankHTML,
-      emptyPara: '<p>' + blankHTML + '</p>',
+      //emptyPara: '<p>' + blankHTML + '</p>', //заменил кусок кода//
+	emptyPara: '+ blankHTML +',
       isEditable: isEditable,
       isControlSizing: isControlSizing,
       buildLayoutInfo: buildLayoutInfo,

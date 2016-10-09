@@ -72,13 +72,6 @@ function fastorder_open_cart() {
         }		
 </script>
 			
-
-			<?php if (!empty($iblog_og)) { ?>
-			<?php foreach($iblog_og as $og_key => $og_value) { ?>
-			<meta property="og:<?php echo $og_key; ?>" content="<?php echo $og_value; ?>"/>
-			<?php } ?>
-			<?php } ?>
-			
 </head>
 <body class="<?php echo $class; ?>">
 <nav id="top">

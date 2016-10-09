@@ -1,4 +1,9 @@
 <?php
+
+// DateAdded
+$_['entry_date_added']   = 'Date Added';
+// DateAdded end
+			
 // Heading
 $_['heading_title']          = 'Products';
 
@@ -79,7 +84,6 @@ $_['entry_tag']          	 = 'Product Tags';
 $_['entry_reward']           = 'Reward Points';
 $_['entry_layout']           = 'Layout Override';
 $_['entry_recurring']        = 'Recurring Profile';
-$_['entry_main_category']    = 'Main Category:';
 
 // Help
 $_['help_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.';

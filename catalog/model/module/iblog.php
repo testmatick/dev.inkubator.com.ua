@@ -71,7 +71,8 @@ class ModelModuleiBlog extends Model {
 				$sql .= " ASC";
 			}
 		} else {
-			$sql .= " ORDER BY p.sort_order_post ASC";
+			//$sql .= " ORDER BY p.sort_order_post ASC";
+			$sql .= " ORDER BY p.is_featured DESC, p.created DESC";
 		}
 		
 		if (isset($data['start']) || isset($data['limit'])) {

@@ -5,6 +5,21 @@ class Action {
 	private $method;
 	private $args = array();
 
+
+        	public function getClass() {
+        		return isset($this->class) ? $this->class : 'controller' . strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $this->route));
+        	}
+            
+
+        	public function getFile() {
+        		return isset($this->file) ? $this->file : DIR_APPLICATION . 'controller/' . $this->route . '.php';
+        	}
+            
+
+        	public function getMethod() {
+        		return $this->method;
+        	}
+            
 	public function __construct($route, $args = array()) {
 		$parts = explode('/', str_replace('../', '', (string)$route));
 

@@ -86,6 +86,12 @@ class ControllerCommonMenu extends Controller {
 		$data['text_tax_rate'] = $this->language->get('text_tax_rate');
 		$data['text_tools'] = $this->language->get('text_tools');
 		$data['text_total'] = $this->language->get('text_total');
+
+				$data['text_productexport'] = $this->language->get('text_productexport');
+				
+
+				$data['text_productimport'] = $this->language->get('text_productimport');
+				
 		$data['text_upload'] = $this->language->get('text_upload');
 		$data['text_tracking'] = $this->language->get('text_tracking');
 		$data['text_user'] = $this->language->get('text_user');
@@ -180,6 +186,12 @@ class ControllerCommonMenu extends Controller {
 		$data['tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');
 		$data['tax_rate'] = $this->url->link('localisation/tax_rate', 'token=' . $this->session->data['token'], 'SSL');
 		$data['total'] = $this->url->link('extension/total', 'token=' . $this->session->data['token'], 'SSL');
+
+				$data['productexport'] = $this->url->link('tool/product_export', 'token=' . $this->session->data['token'], 'SSL');
+				
+
+				$data['productimport'] = $this->url->link('tool/product_import', 'token=' . $this->session->data['token'], 'SSL');
+				
 		$data['upload'] = $this->url->link('tool/upload', 'token=' . $this->session->data['token'], 'SSL');
 		$data['user'] = $this->url->link('user/user', 'token=' . $this->session->data['token'], 'SSL');
 		$data['user_group'] = $this->url->link('user/user_permission', 'token=' . $this->session->data['token'], 'SSL');

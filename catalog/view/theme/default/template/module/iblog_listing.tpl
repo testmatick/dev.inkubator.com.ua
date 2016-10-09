@@ -35,9 +35,9 @@
         <div id="content" class="<?php echo $class; ?>">
 			<?php if (isset($posts)) { ?>
 				<div class="iblog-filter row">
-                	<div class="col-md-7">
+                	<div class="col-md-5">
                     </div>
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-4">
                     	<label for="iblog-sort" class="col-sm-4 control-label"><?php echo $text_sort; ?></label>
                     	<div class="col-sm-8">
                       		<select class="form-control" id="iblog-sort" onchange="location = this.value;">
@@ -51,9 +51,9 @@
                       		</select>
                     	</div>
                     </div>
-                	<div class="form-group col-md-2">
+                	<div class="form-group col-md-3">
                     	<label for="iblog-limit" class="col-sm-4 control-label"><?php echo $text_limit; ?></label>
-                    	<div class="col-sm-8">
+                    	<div class="col-sm-5">
                       		<select class="form-control" id="iblog-limit" onchange="location = this.value;">
                                 <?php foreach ($limits as $limits) { ?>
                                     <?php if ($limits['value'] == $limit) { ?>

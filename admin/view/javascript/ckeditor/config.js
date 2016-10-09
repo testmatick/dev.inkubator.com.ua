@@ -4,15 +4,7 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	config.htmlEncodeOutput = false;
-	config.entities  = false;
-	config.basicEntities = false;
-	config.entities_greek = false;
-	config.entities_latin = false;
-	config.allowedContent = true;
-	config.enterMode = CKEDITOR.ENTER_BR;
-	config.shiftEnterMode = CKEDITOR.ENTER_P;
-	CKEDITOR.dtd.$removeEmpty = false;
-	CKEDITOR.config.contentsCss = 'view/javascript/ckeditor/default-font.css';
-	config.extraPlugins = 'codemirror';
+	// Define changes to default configuration here. For example:
+	// config.language = 'fr';
+	// config.uiColor = '#AADC6E';
 };
